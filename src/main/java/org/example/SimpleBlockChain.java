@@ -11,22 +11,23 @@ public class SimpleBlockChain {
     public static void main(String[] args) {
         blockchain.add(new Block("First Block", "0"));
         blockchain.get(0).mineBlock(DIFFICULTY_VAR);
-        System.out.println("Trying mine block 1");
+        System.out.println("Trying mine block 1...");
         blockchain.add(new Block("Second Block", blockchain.get(blockchain.size()-1).hash));
         blockchain.get(1).mineBlock(DIFFICULTY_VAR);
-        System.out.println("Trying mine block 2");
+        System.out.println("Trying mine block 2...");
         blockchain.add(new Block("Third Block", blockchain.get(blockchain.size()-1).hash));
         blockchain.get(2).mineBlock(DIFFICULTY_VAR);
-        System.out.println("Trying mine block 3");
+        System.out.println("Trying mine block 3...");
 
-        System.out.println("Blockhain valid? " + isChainValid());
+        System.out.println("Blockhain valid? " + isChainValid() + "\n");
 
+        System.out.println("-------THE BLOCKCHAIN-------");
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
         System.out.println(blockchainJson);
 
     }
 
-    //Method to compare if the block is valid, is valid if hash == calculatedHash && prevHash == hash of previous Block
+    //Method to compare if the block is valid
     public static Boolean isChainValid(){
         Block currentBlock;
         Block previousBlock;
@@ -35,15 +36,15 @@ public class SimpleBlockChain {
         for(int i = 1; i < blockchain.size(); i++){
             currentBlock = blockchain.get(i);
             previousBlock = blockchain.get(i-1);
-            if(currentBlock.hash != currentBlock.calculateHash()){
+            if(!currentBlock.hash.equals(currentBlock.calculateHash())){
                 System.out.println("Hash does not match");
                 return false;
             }
-            if(previousBlock.hash != currentBlock.prevHash){
+            if(!previousBlock.hash.equals(currentBlock.prevHash)){
                 System.out.println("Previous hash does not match");
                 return false;
             }
-            if(currentBlock.hash.substring(0, DIFFICULTY_VAR) != hashTarget){
+            if(!currentBlock.hash.substring(0, DIFFICULTY_VAR).equals(hashTarget)){
                 System.out.println("Block wasn't been mined");
                 return false;
             }
