@@ -3,9 +3,8 @@ import java.util.Date;
 import java.security.MessageDigest;
 
 public class Block {
-
-    public String hash;
-    public String prevHash;
+    private String hash;
+    private String prevHash;
     private String data;
     private long timeStamp;
     private int nonce;
@@ -14,8 +13,7 @@ public class Block {
         this.data = data;
         this.timeStamp = new Date().getTime();
         this.prevHash = prevHash;
-        //all created blocks will have a hash
-        this.hash = calculateHash();
+        this.hash = calculateHash(); //all created blocks will have a hash
     }
 
     public String calculateHash() {
@@ -34,5 +32,13 @@ public class Block {
 
         System.out.println("Block was mined: " + hash);
 
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public String getPrevHash() {
+        return prevHash;
     }
 }
