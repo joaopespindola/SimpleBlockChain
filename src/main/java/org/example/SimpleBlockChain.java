@@ -17,16 +17,17 @@ public class SimpleBlockChain {
         System.out.println("Trying mine block 2");
         blockchain.add(new Block("Third Block", blockchain.get(blockchain.size()-1).getHash()));
         blockchain.get(2).mineBlock(DIFFICULTY_VAR);
-        System.out.println("Trying mine block 3");
+        System.out.println("Trying mine block 3...");
 
-        System.out.println("Blockhain valid? " + isChainValid());
+        System.out.println("Blockhain valid? " + isChainValid() + "\n");
 
+        System.out.println("-------THE BLOCKCHAIN-------");
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
         System.out.println(blockchainJson);
 
     }
 
-    //Method to compare if the block is valid, is valid if hash == calculatedHash && prevHash == hash of previous Block
+    //Method to compare if the block is valid
     public static Boolean isChainValid(){
         Block currentBlock;
         Block previousBlock;
