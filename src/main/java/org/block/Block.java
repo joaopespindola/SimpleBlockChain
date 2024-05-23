@@ -1,6 +1,7 @@
-package org.example;
+package org.block;
+import org.util.StringUtil;
+
 import java.util.Date;
-import java.security.MessageDigest;
 
 public class Block {
     private String hash;

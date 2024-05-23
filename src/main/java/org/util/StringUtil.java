@@ -1,4 +1,4 @@
-package org.example;
+package org.util;
 import java.security.MessageDigest;
 
 //method to apply the algorithm SHA256 in a string and return the signature as a string

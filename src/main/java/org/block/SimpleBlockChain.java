@@ -1,4 +1,4 @@
-package org.example;
+package org.block;
 
 import java.util.ArrayList;
 import com.google.gson.GsonBuilder;
@@ -36,15 +36,15 @@ public class SimpleBlockChain {
         for(int i = 1; i < blockchain.size(); i++){
             currentBlock = blockchain.get(i);
             previousBlock = blockchain.get(i-1);
-            if(currentBlock.getHash() != currentBlock.calculateHash()){
+            if(!currentBlock.getHash().equals(currentBlock.calculateHash())){
                 System.out.println("Hash does not match");
                 return false;
             }
-            if(previousBlock.getHash() != currentBlock.getPrevHash()){
+            if(!previousBlock.getHash().equals(currentBlock.getPrevHash())){
                 System.out.println("Previous hash does not match");
                 return false;
             }
-            if(currentBlock.getHash().substring(0, DIFFICULTY_VAR) != hashTarget){
+            if(!currentBlock.getHash().substring(0, DIFFICULTY_VAR).equals(hashTarget)){
                 System.out.println("Block wasn't been mined");
                 return false;
             }
